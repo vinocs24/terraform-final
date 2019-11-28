@@ -14,11 +14,11 @@ provider "aws" {
 
 # Create EC2 instance
 resource "aws_instance" "default" {
-  ami                    = "var.ami"
-  key_name               = "key_name"
+  ami                    = "ami-00eb20669e0990cb4"
+  key_name               = "jen_key"
   vpc_security_group_ids = ["aws_security_group.default.id"]
   source_dest_check      = false
-  instance_type          = "instance_type"
+  instance_type          = "t2.micro"
 
   tags = {
     Name = "terraform-default"
