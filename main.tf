@@ -13,34 +13,19 @@ provider "aws" {
 }
 
 # Create EC2 instance
-resource "aws_instance" "default" {
-  ami                    = "ami-00eb20669e0990cb4"
-  key_name               = "jen_key"
-  vpc_security_group_ids = ["aws_security_group.default.id"]
-  source_dest_check      = false
-  instance_type          = "t2.micro"
-
+resource "aws_instance" "MyTest" {
+  ami           = "ami-00eb20669e0990cb4"
+  instance_type = "t2.micro"
+  key_name = "jen_key"
+  security_groups = [ "Jenkins_SG" ]
+  
   tags = {
-    Name = "terraform-default"
+    terraform = "true"
+    env       = "Dev"
+    Name      = "My First Server"
   }
-}
-
-# Create Security Group for EC2
-resource "aws_security_group" "default" {
-  name = "terraform-default-sg"
-
-  ingress {
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+  root_block_device  {
+      volume_type = "gp2"
+      volume_size = 25
   }
-
-  ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
 }
