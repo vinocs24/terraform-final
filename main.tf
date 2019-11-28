@@ -14,7 +14,7 @@ provider "aws" {
 
 # Create EC2 instance
 resource "aws_instance" "default" {
-  ami                    = "ami"
+  ami                    = "var.ami"
   key_name               = "key_name"
   vpc_security_group_ids = ["aws_security_group.default.id"]
   source_dest_check      = false
