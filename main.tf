@@ -14,7 +14,7 @@ provider "aws" {
 
 # Create EC2 instance
 resource "aws_instance" "MyTest" {
-  ami           = "ami-00eb20669e0990cb4"
+  ami           = "var.ami"
   instance_type = "t2.micro"
   key_name = "jen_key"
   
