@@ -1,6 +1,4 @@
-variable "count" {
-  default = 1
-}
+
 
 variable "key_name" {
   description = "Private key name to use with instance"
